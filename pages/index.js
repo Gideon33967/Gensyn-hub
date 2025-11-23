@@ -235,3 +235,90 @@ const GensynHub = () => {
                     </button>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'calculator' && (
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-5xl font-bold mb-2" style={{ fontFamily: 'monospace' }}>
+                COST CALCULATOR
+              </h2>
+              <p className="text-xl text-pink-200">See How Much You Save</p>
+            </div>
+
+            <div className="bg-stone-800/80 border-4 border-pink-300 p-8">
+              <div className="mb-8">
+                <label className="block text-xl font-bold mb-4 text-pink-300">
+                  GPU Hours Needed
+                </label>
+                <input 
+                  type="range" 
+                  min="10" 
+                  max="1000" 
+                  value={calcHours}
+                  onChange={(e) => setCalcHours(e.target.value)}
+                  className="w-full h-4 bg-stone-700 rounded-lg appearance-none cursor-pointer accent-pink-300"
+                />
+                <div className="text-center mt-4">
+                  <span className="text-6xl font-bold text-pink-300">{calcHours}</span>
+                  <span className="text-2xl text-pink-200 ml-2">hours</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="bg-gradient-to-br from-pink-300 to-pink-400 p-6 border-4 border-stone-900 text-stone-900">
+                  <div className="text-sm font-bold mb-2 uppercase tracking-wide">Gensyn Network</div>
+                  <div className="text-5xl font-bold mb-2">${gensynCost}</div>
+                  <div className="text-sm opacity-75">Decentralized compute</div>
+                </div>
+
+                <div className="bg-stone-700 p-6 border-4 border-stone-600">
+                  <div className="text-sm font-bold mb-2 uppercase tracking-wide text-pink-200">Traditional Cloud</div>
+                  <div className="text-5xl font-bold mb-2">${cloudCost}</div>
+                  <div className="text-sm text-pink-200 opacity-75">AWS/GCP/Azure</div>
+                </div>
+              </div>
+
+              <div className="text-center p-6 bg-green-900/50 border-4 border-green-500">
+                <div className="text-3xl font-bold mb-2">
+                  YOU SAVE {savings}% 🎉
+                </div>
+                <div className="text-xl text-green-300">
+                  That's ${(cloudCost - gensynCost).toFixed(2)} in savings!
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+
+      <footer className="relative z-10 mt-20 border-t-4 border-pink-300 bg-stone-900/80 backdrop-blur">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="text-center">
+            <p className="text-pink-200 font-bold tracking-wider">
+              POWERED BY THE SWARM • BUILT FOR THE COMMUNITY
+            </p>
+            <div className="mt-4 flex justify-center gap-6">
+              <a href="#" className="text-pink-300 hover:text-pink-400 font-bold">DOCS</a>
+              <a href="#" className="text-pink-300 hover:text-pink-400 font-bold">GITHUB</a>
+              <a href="#" className="text-pink-300 hover:text-pink-400 font-bold">DISCORD</a>
+              <a href="#" className="text-pink-300 hover:text-pink-400 font-bold">TWITTER</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(20px, 20px); }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default GensynHub;
